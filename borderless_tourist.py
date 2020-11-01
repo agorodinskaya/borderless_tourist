@@ -54,9 +54,10 @@ def add_attraction(destination, attraction):
 add_attraction("Los Angeles, USA", ['Venice Beach', ['beach']])
 # print(attractions)
 
-add_attraction("Paris, France", ["the Louvre", ["art", "museum"]])
+add_attraction("Paris, France", ["Louvre", ["art", "museum"]])
+add_attraction("Paris, France", ["Orsay", ["art", "museum"]])
 add_attraction("Paris, France", ["Arc de Triomphe", [
-               "historical site", "monument"]])
+               "historical site", "monument", "museum"]])
 add_attraction("Shanghai, China", ["Yu Garden", [
                "garden", "historcical site"]])
 add_attraction("Shanghai, China", ["Yuz Museum", ["art", "museum"]])
@@ -90,3 +91,26 @@ def find_attractions(destination, interests):
 
 
 print(find_attractions("Los Angeles, USA", ['art']))
+
+
+def get_attractions_for_traveler(traveler):
+    traveler_destination = traveler[1]
+    traveler_interests = traveler[2]
+    traveler_attractions = find_attractions(
+        traveler_destination, traveler_interests)
+    interests_string = "Hi " + \
+        traveler[0] + ", we think you'll like these places around " + \
+        traveler_destination + ": "
+    for i in range(len(traveler_attractions)):
+        if traveler_attractions[-1] == traveler_attractions[i]:
+            interests_string += "the " + traveler_attractions[i] + "."
+        else:
+            interests_string += "the " + traveler_attractions[i] + ", "
+    return interests_string
+
+
+smills_france = get_attractions_for_traveler(
+    ['Dereck Smill', 'Paris, France', ['museum']])
+
+
+print(smills_france)
